@@ -14,101 +14,69 @@ from IPython.display import HTML, display
 from scipy.interpolate import griddata
 import numpy as np
 import pandas as pd
-from covid import main as c
-from covid import Covid
+
 
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
 import webbrowser
-import folium
+
 
 from IPython.core.display import HTML
 import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('QT5Agg')
 
-import geopandas
-import plotly.express as px
 
-#
-# # path = os.path.dirname(__file__) #uic paths from itself, not the active dir, so path needed
-# qtCreatorFile = "/Users/joan/PycharmProjects/grow/Ui.ui" #Ui file name, from QtDesigner, assumes in same folder as this .py
-#
-# ui, QtBaseClass = uic.loadUiType(qtCreatorFile) #process through pyuic
-#
-#
-# class MplCanvas(FigureCanvasQTAgg):
-#
-#     def __init__(self):
-#
-#         super(MyApp1, self).__init__()
-#
-#
-#
-#
-#
-#         self.setupUi(self)
-#
-#
-#
-#
-# class MyApp1(QMainWindow,  ui): #gui class
-#     def __init__(self):
-#         super().__init__()
-#
-#         self.im = QPixmap("/Users/joan/PycharmProjects/grow/temp/12162020174839.jpg")
-#         self.label = QLabel()
-#         self.label.setPixmap(self.im)
-#
-#         self.grid = QGridLayout()
-#         self.grid.addWidget(self.label, 1, 1)
-#         # self.setLayout(self.grid)
-#
-#         self.setGeometry(50, 50, 320, 200)
-#         self.setWindowTitle("PyQT show image")
-#         self.show()
-#
-#
-# def grow_ui():
-#     app = QApplication(sys.argv) #instantiate a QtGui (holder for the app)
-#
-#
-#     # global window
-#     # app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
-#     window = MyApp1()
-#     window.show()
-#     sys.exit(app.exec_())
-#     # return window
-#
-# if __name__ == "__main__":
-#     grow_ui()
 
-import sys
-from PyQt5 import QtGui,QtCore
 
-class PrettyWidget(QWidget):
+# path = os.path.dirname(__file__) #uic paths from itself, not the active dir, so path needed
+qtCreatorFile = "/Users/joan/PycharmProjects/grow/Ui.ui" #Ui file name, from QtDesigner, assumes in same folder as this .py
+
+ui, QtBaseClass = uic.loadUiType(qtCreatorFile) #process through pyuic
+
+
+class MplCanvas(FigureCanvasQTAgg):
+
+    def __init__(self):
+
+        super(MyApp1, self).__init__()
+
+
+
+
+
+        self.setupUi(self)
+
+
+
+
+class MyApp1(QMainWindow,  ui): #gui class
+
 
     def __init__(self, parent=None):
         QWidget.__init__(self, parent=parent)
         self.initUI()
 
     def initUI(self):
-        self.resize(1000,600)
-        self.center()
-        self.setWindowTitle('Browser')
-
-        self.lb = QLabel(self)
-        pixmap = QtGui.QPixmap("/Users/joan/PycharmProjects/grow/temp/12162020174839.jpg")
-        height_of_label = 100
-        self.lb.resize(self.width(), self.height())
-        self.lb.setPixmap(pixmap.scaled(self.lb.size(), QtCore.Qt.IgnoreAspectRatio))
-        self.show()
+        pass
+        # self.resize(1000,600)
+        # self.center()
+        # self.setWindowTitle('Browser')
+        #
+        # self.lb = QLabel(self)
+        # pixmap = QtGui.QPixmap("/Users/joan/PycharmProjects/grow/temp/12162020171326.jpg")
+        # height_of_label = 100
+        # self.lb.resize(self.width(), self.height())
+        # self.lb.setPixmap(pixmap.scaled(self.lb.size(), QtCore.Qt.IgnoreAspectRatio))
+        # self.show()
 
     def resizeEvent(self, event):
-        self.lb.resize(self.width(), self.lb.height())
-        self.lb.setPixmap(self.lb.pixmap().scaled(self.lb.size(), QtCore.Qt.IgnoreAspectRatio))
-        QWidget.resizeEvent(self, event)
+
+        pass
+        # self.lb.resize(self.width(), self.lb.height())
+        # self.lb.setPixmap(self.lb.pixmap().scaled(self.lb.size(), QtCore.Qt.IgnoreAspectRatio))
+        # QWidget.resizeEvent(self, event)
 
 
     def center(self):
@@ -117,9 +85,57 @@ class PrettyWidget(QWidget):
         qr.moveCenter(cp)
         self.move(qr.topLeft())
 
-def main():
-    app = QApplication(sys.argv)
-    w = PrettyWidget()
-    app.exec_()
 
-main()
+def grow_ui():
+    app = QApplication(sys.argv) #instantiate a QtGui (holder for the app)
+
+
+    # global window
+    # app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+    window = MyApp1()
+    window.show()
+    sys.exit(app.exec_())
+    # return window
+
+if __name__ == "__main__":
+    grow_ui()
+
+# import sys
+# from PyQt5 import QtGui,QtCore
+#
+# class PrettyWidget(QWidget):
+#
+#     def __init__(self, parent=None):
+#         QWidget.__init__(self, parent=parent)
+#         self.initUI()
+#
+#     def initUI(self):
+#         self.resize(1000,600)
+#         self.center()
+#         self.setWindowTitle('Browser')
+#
+#         self.lb = QLabel(self)
+#         pixmap = QtGui.QPixmap("/Users/joan/PycharmProjects/grow/temp/12162020171326.jpg")
+#         height_of_label = 100
+#         self.lb.resize(self.width(), self.height())
+#         self.lb.setPixmap(pixmap.scaled(self.lb.size(), QtCore.Qt.IgnoreAspectRatio))
+#         self.show()
+#
+#     def resizeEvent(self, event):
+#         self.lb.resize(self.width(), self.lb.height())
+#         self.lb.setPixmap(self.lb.pixmap().scaled(self.lb.size(), QtCore.Qt.IgnoreAspectRatio))
+#         QWidget.resizeEvent(self, event)
+#
+#
+#     def center(self):
+#         qr = self.frameGeometry()
+#         cp = QDesktopWidget().availableGeometry().center()
+#         qr.moveCenter(cp)
+#         self.move(qr.topLeft())
+#
+# def main():
+#     app = QApplication(sys.argv)
+#     w = PrettyWidget()
+#     app.exec_()
+#
+# main()
