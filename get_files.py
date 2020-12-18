@@ -1,9 +1,6 @@
 # from smb.SMBConnection import SMBConnection
 from time import sleep
-import configparser
 
-config = configparser.ConfigParser()
-config.read('config.ini')
 #
 #
 # conn = SMBConnection(config['NAS']['User'], config['NAS']['pwd'],config['NAS']['name'],config['NAS']['name'])
@@ -35,12 +32,15 @@ config.read('config.ini')
 # fp= open(local_path, 'wb')
 # conn.retrieveFile('Joan Privat','/grow/abc.jpg', fp)
 # sleep(5)
-
-
 from distutils.dir_util import copy_tree
+def get_temp():
 
-fromdirectory = '/Volumes/Joan Privat/grow/'
 
-todirectory = '/Users/joan/PycharmProjects/grow/temp/'
+    fromdirectory = '/Volumes/Joan Privat/grow/'
 
-copy_tree(fromdirectory,todirectory)
+    todirectory = '/Users/joan/PycharmProjects/grow/temp/'
+
+    copy_tree(fromdirectory,todirectory)
+
+if __name__ == "__main__":
+    get_temp()
