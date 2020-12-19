@@ -11,7 +11,7 @@ print(df)
 
 fig, axs = plt.subplots(3)
 
-axs[2].plot(df['time'],df['hum'])
+axs[2].plot(df['time'],df['hum']*0.55)
 axs[2].set_title('Humidity')
 axs[0].plot(df['time'],df['moist'])
 axs[0].set_title('Soil Moisture')

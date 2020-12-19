@@ -49,13 +49,58 @@
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>0</x>
       <y>0</y>
-      <width>521</width>
+      <width>1001</width>
       <height>41</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="b_moist">
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Soil Moisture</string>
+       </property>
+       <property name="shortcut">
+        <string>Return</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="b_temp">
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Temperature</string>
+       </property>
+       <property name="shortcut">
+        <string>Return</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="b_hum">
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Humidity</string>
+       </property>
+       <property name="shortcut">
+        <string>Return</string>
+       </property>
+      </widget>
+     </item>
      <item>
       <widget class="QPushButton" name="b_back">
        <property name="font">
@@ -67,7 +112,7 @@
         <string>&lt;&lt;</string>
        </property>
        <property name="shortcut">
-        <string>Return</string>
+        <string>Left</string>
        </property>
       </widget>
      </item>
@@ -95,7 +140,7 @@
         <string>&gt;&gt;</string>
        </property>
        <property name="shortcut">
-        <string>Return</string>
+        <string>Right</string>
        </property>
       </widget>
      </item>
@@ -110,7 +155,7 @@
         <string>Close</string>
        </property>
        <property name="shortcut">
-        <string>Return</string>
+        <string>Esc</string>
        </property>
       </widget>
      </item>
