@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Settings</string>
+   <string>GrowBox</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="photo">
@@ -49,8 +49,8 @@
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>477</x>
-      <y>509</y>
+      <x>220</x>
+      <y>0</y>
       <width>521</width>
       <height>41</height>
      </rect>

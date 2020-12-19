@@ -21,7 +21,10 @@ Ui_Settings, QtBaseClass = uic.loadUiType(qtCreatorFile) #process through pyuic
 
 class MyApp1(QMainWindow, Ui_Settings): #gui class
     def __init__(self):
-        # get_temp()
+        try:
+            get_temp()
+        except:
+            pass
         self.temp_files = [f for f in listdir(temp) if isfile(join(temp, f))]
         self.img = 0
         #The following sets up the gui via Qt
