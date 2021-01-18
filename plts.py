@@ -4,9 +4,10 @@ import get_files
 
 
 
-get_files.get_temp()
+# get_files.get_temp()
 df = pd.read_csv('/Users/joan/PycharmProjects/grow/temp/data.csv')[['hum','moist','temp','time']]
-df['time'] = pd.to_datetime(df['time'], format='%m%d%Y%H%M%S')
+print(df)
+df['time'] = pd.to_datetime(df['time'], format='%m%d%Y%H%M%S', errors = 'coerce')
 print(df)
 
 fig, axs = plt.subplots(3)

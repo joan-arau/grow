@@ -22,18 +22,23 @@ Ui_Settings, QtBaseClass = uic.loadUiType(qtCreatorFile) #process through pyuic
 
 class MyApp1(QMainWindow, Ui_Settings): #gui class
     def __init__(self):
-        try:
-            get_temp()
-        except:
-            pass
+        # try:
+        #     get_temp()
+        # except:
+        #     pass
         super(MyApp1, self).__init__()
         self.setupUi(self)
-        self.df = pd.read_csv('/Users/joan/PycharmProjects/grow/temp/data.csv')[['hum', 'moist', 'temp', 'time']]
-        self.df['time'] = pd.to_datetime(self.df['time'], format='%m%d%Y%H%M%S')
+        self.df = pd.read_csv('/Users/joan/PycharmProjects/grow/temp/data.csv',dtype={'time': 'str'})[['hum', 'moist', 'temp', 'time']]
+        # print(self.df)
+        self.df['time'] = pd.to_datetime(self.df['time'], format='%m%d%Y%H%M%S', errors = 'coerce')
         self.df['hum'] = self.df['hum'] *0.55 #- 30
         self.df['temp'] = self.df['temp'] -1  # - 30
         print(self.df)
         last_row=list(self.df.iterrows())[-1]
+        print(last_row)
+
+
+        # breakpoint()
 
         self.b_hum.setText('Humidity: '+str(round(float(last_row[1]['hum'])))+'%')
         self.b_hum.clicked.connect(lambda: self.create_plot('hum'))
@@ -43,6 +48,7 @@ class MyApp1(QMainWindow, Ui_Settings): #gui class
         self.b_moist.clicked.connect(lambda: self.create_plot('moist'))
 
         self.temp_files = [f for f in listdir(temp) if isfile(join(temp, f))]
+        # print(self.temp_files)
         self.img = 0
         #The following sets up the gui via Qt
 
@@ -87,13 +93,15 @@ class MyApp1(QMainWindow, Ui_Settings): #gui class
 
             # print(x,x[-4:])
             if x[-4:] == '.jpg':
-                l.append(int(x[:-4]))
+                l.append(datetime.strptime(x[:-4],'%m%d%Y%H%M%S'))
 
-        img = temp + str(sorted(l)[-1]) + '.jpg'
+        img = temp + datetime.strftime(sorted(l)[-1],'%m%d%Y%H%M%S') + '.jpg'
+        print(img)
         pixmap = QtGui.QPixmap(img)
         # print(img)
         self.label.setPixmap(pixmap.scaled(self.label.size(), QtCore.Qt.IgnoreAspectRatio))
-        current_time = str(datetime.strptime(str(sorted(l)[self.img]), "%m%d%Y%H%M%S"))
+        current_time = str(sorted(l)[self.img])
+        print(current_time)
         self.label_2.setText(current_time)
 
 
@@ -107,19 +115,19 @@ class MyApp1(QMainWindow, Ui_Settings): #gui class
 
             # print(x,x[-4:])
             if x[-4:] == '.jpg':
-                l.append(int(x[:-4]))
+                l.append(datetime.strptime(x[:-4],'%m%d%Y%H%M%S'))
 
 
             # print(sorted(l))
 
         try:
             self.img -= 1
-            img = temp + str(sorted(l)[self.img]) +'.jpg'
+            img = temp + datetime.strftime(sorted(l)[self.img],'%m%d%Y%H%M%S') +'.jpg'
 
             pixmap = QtGui.QPixmap(img)
             # print(img)
             self.label.setPixmap(pixmap.scaled(self.label.size(), QtCore.Qt.IgnoreAspectRatio))
-            current_time = str(datetime.strptime(str(sorted(l)[self.img]), "%m%d%Y%H%M%S"))
+            current_time = str(sorted(l)[self.img])
             self.label_2.setText(current_time)
         except:
             pass
@@ -141,18 +149,19 @@ class MyApp1(QMainWindow, Ui_Settings): #gui class
 
             # print(x,x[-4:])
             if x[-4:] == '.jpg':
-                l.append(int(x[:-4]))
+                l.append(datetime.strptime(x[:-4],'%m%d%Y%H%M%S'))
 
 
         # print(sorted(l))
         if self.img != -1:
             self.img += 1
-            img = temp + str(sorted(l)[self.img]) +'.jpg'
+            img = temp + datetime.strftime(sorted(l)[self.img],'%m%d%Y%H%M%S') +'.jpg'
 
             pixmap = QtGui.QPixmap(img)
             # print(img)
             self.label.setPixmap(pixmap.scaled(self.label.size(), QtCore.Qt.IgnoreAspectRatio))
-            current_time = str(datetime.strptime(str(sorted(l)[self.img]), "%m%d%Y%H%M%S"))
+            current_time =str(sorted(l)[self.img])
+            print(current_time)
             self.label_2.setText(current_time)
 
     def create_plot(self,dt):

@@ -35,12 +35,20 @@ from time import sleep
 from distutils.dir_util import copy_tree
 def get_temp():
 
+    try:
+        fromdirectory = '/Volumes/Joan Privat/grow/'
 
-    fromdirectory = '/Volumes/Joan Privat/grow/'
+        todirectory = '/Users/joan/PycharmProjects/grow/temp/'
 
-    todirectory = '/Users/joan/PycharmProjects/grow/temp/'
+        copy_tree(fromdirectory,todirectory)
 
-    copy_tree(fromdirectory,todirectory)
+    except:
+        fromdirectory = '/Volumes/schweizer-zinnfiguren.synology.me/Joan Privat/grow/'
+
+        todirectory = '/Users/joan/PycharmProjects/grow/temp/'
+
+        copy_tree(fromdirectory, todirectory)
+
 
 if __name__ == "__main__":
     get_temp()
