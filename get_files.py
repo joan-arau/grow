@@ -33,6 +33,7 @@ from time import sleep
 # conn.retrieveFile('Joan Privat','/grow/abc.jpg', fp)
 # sleep(5)
 from distutils.dir_util import copy_tree
+import os
 def get_temp():
 
     try:
@@ -48,6 +49,13 @@ def get_temp():
         todirectory = '/Users/joan/PycharmProjects/grow/temp/'
 
         copy_tree(fromdirectory, todirectory)
+
+
+    for i in os.listdir('/Users/joan/PycharmProjects/grow/temp'):
+        print(i)
+        if i[0] == '.':
+            os.remove('/Users/joan/PycharmProjects/grow/temp/'+i)
+
 
 
 if __name__ == "__main__":
