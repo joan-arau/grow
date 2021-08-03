@@ -22,10 +22,10 @@ Ui_Settings, QtBaseClass = uic.loadUiType(qtCreatorFile) #process through pyuic
 
 class MyApp1(QMainWindow, Ui_Settings): #gui class
     def __init__(self):
-        # try:
-        #     get_temp()
-        # except:
-        #     pass
+        try:
+            get_temp()
+        except:
+            pass
         super(MyApp1, self).__init__()
         self.setupUi(self)
         self.df = pd.read_csv('/Users/joan/PycharmProjects/grow/temp/data.csv',dtype={'time': 'str'})[['hum', 'moist', 'temp', 'time']]
